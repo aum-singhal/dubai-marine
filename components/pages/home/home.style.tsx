@@ -19,12 +19,13 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   bigWhiteText40:{
-    width: "85%", 
-    backgroundColor:"#F6F6F6", 
-    borderRadius: 10, 
-    borderWidth: 1, 
-    borderColor: "#e1e1e1", 
-    paddingHorizontal: 10
+    fontSize:40, 
+    fontWeight: "500", 
+    color: "#fff", 
+    padding: 4, 
+    borderBottomWidth: 1, 
+    borderBottomColor: "#DDD", 
+    marginHorizontal: 10
   },
   bigGreenText40:{
     fontSize:40, 
