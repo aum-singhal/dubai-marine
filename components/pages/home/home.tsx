@@ -1,8 +1,9 @@
-import { Image, ScrollView, Text, TextInput, View } from "react-native";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import SectionWithTitleChildren from "../../molecules/sectionWithTitleChildren";
 import { useState } from "react";
 import { styles } from "./home.style";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import SimpleCardWithImage from "../../atoms/simpleCardWithImage/simpleCardWithImage";
 
 
 function CatCard(){
@@ -12,10 +13,13 @@ function CatCard(){
     {text: "Bar", img: require("../../../assets/category/bar.png")},
   ]
   return data.map((item)=>{
-    return <View style={styles.categoryCard} key={item.text}>
-      <Image style={{ flex:1}} resizeMode='contain'  source={item.img} />
-      <Text style={{color: Colors.black}}>{item.text}</Text>
-    </View>
+    return <SimpleCardWithImage 
+        key={item.text}
+        cardStyle={styles.categoryCard} 
+        image={<Image style={{flex:1}} resizeMode='contain'  source={item.img} />}
+        text={item.text}
+        textStyle={{color: "#000"}}
+      />
   })
 }
 
@@ -51,25 +55,23 @@ function PlaceCard(){
   })
 }
 
-export default function HomePage(){
+export default function HomePage({navigation}:any){
   const [searchText, setSearchText] = useState("");
 
-  return <ScrollView contentInsetAdjustmentBehavior="automatic" style={{height: "100%"}}>
+  return <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={{paddingBottom:30}} style={{flex: 1,height: "100%", padding: 10}}>
 
     {/* ================= Header Section =============== */}
 
     <View style={{flexDirection: "row", marginBottom: 15, justifyContent:"space-between"}}>
         <Image source={require("../../../assets/logo.png")} />
+
         <View style={{flexDirection:"row", gap: 10}}>
-          <View style={styles.headerCards}>
+          <TouchableOpacity style={styles.headerCards} onPress={()=>navigation.navigate("QrScanner")}>
             <Image source={require("../../../assets/icons/scan.png")} />
             <Text style={{fontSize:13, color: "#15CC3B"}}>Scan</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.headerCards}>
-            <Image source={require("../../../assets/icons/wallet.png")} />
-            <Text style={{fontSize:13, color: "#15CC3B"}}>123</Text>
-          </View>
+          <SimpleCardWithImage cardStyle={styles.headerCards} image={<Image source={require("../../../assets/icons/wallet.png")} />} text="123" textStyle={{fontSize:13, color: "#15CC3B"}} />
         </View>
     </View>
     
