@@ -28,6 +28,9 @@ end
 target 'dubaiMarine' do
   config = use_native_modules!
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera/Permission-Camera.podspec"
+  
   use_react_native!(
     :path => config[:reactNativePath],
     # Enables Flipper.
